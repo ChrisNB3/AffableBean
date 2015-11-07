@@ -1,8 +1,14 @@
 <%-- any content can be specified here e.g.: --%>
 
             <div id="footer">
+                <br>
                 <hr>
-                <p id="footerText">[ footer text]</p>
+                <p id="footerText" class="reallySmallText">
+                    <a href="#">Privacy Policy</a>
+                    &nbsp;&nbsp;::&nbsp;&nbsp;
+                    <a href="#">Contact</a>
+                    &nbsp;&nbsp;&copy;&nbsp;&nbsp;
+                    2015 The Affable Bean</p>
             </div>
         </div>
     </body>

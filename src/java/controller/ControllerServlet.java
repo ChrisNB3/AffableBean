@@ -5,13 +5,18 @@
  */
 package controller;
 
+import entity.Category;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import session.CategoryFacade;
 
 /**
  *
@@ -19,7 +24,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControllerServlet", loadOnStartup = 1, urlPatterns = {"/category", "/addToCart", "/viewCart", "/updateCart", "/checkout", "/purchase", "/chooseLanguage"})
 public class ControllerServlet extends HttpServlet {
-
+    
+    @EJB
+    private CategoryFacade categoryFacade;
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -37,21 +45,35 @@ public class ControllerServlet extends HttpServlet {
         
         // if category page is requested
         if (userPath.equals("/category")){
-            // TODO : Implement category request
-        }
+            
+            // get categoryId from request
+            String categoryId = request.getQueryString();
+            
+            if (categoryId != null){
+                
+                // get selected category
+                Category selectedCategory = categoryFacade.find((Short.parseShort(categoryId)));
+                
+                // place selected category in request scope
+                request.setAttribute("selectedCategory", selectedCategory);
+                
+                // get all products for selected category
+                Collection<Product> categoryProducts = selectedCategory.getProductCollection();
+                
+                // place category products in request scope
+                request.setAttribute("categoryProducts", categoryProducts);
+            }
         
         // if cart page is requested
-        else if (userPath.equals("/viewCart")){
+        } else if (userPath.equals("/viewCart")){
             // TODO : Implement cart page request
-        }
         
         // if checkout page is requested
-        else if (userPath.equals("/checkout")){
+        } else if (userPath.equals("/checkout")){
             // TODO : Implement checkout page request
-        }
         
         // if user switches language
-        else if (userPath.equals("/chooseLanguage")){
+        } else if (userPath.equals("/chooseLanguage")){
             // TODO : Implement language request
         }
         
@@ -83,18 +105,15 @@ public class ControllerServlet extends HttpServlet {
         // if addToCart action is called
         if (userPath.equals("/addToCart")){
             // TODO : Implement category request
-        }
         
         // if updateCart action is called
-        else if (userPath.equals("/updateCart")){
+        }else if (userPath.equals("/updateCart")){
             // TODO : Implement cart page request
-        }
         
         // if purchase action is called
-        else if (userPath.equals("/purchase")){
+        }else if (userPath.equals("/purchase")){
             // TODO : Implement checkout page request
         }
-        
         // use RequestDispatcher to forward request internally
         String url = "/WEB-INF/view" + userPath + ".jsp";
         
@@ -116,4 +135,9 @@ public class ControllerServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    @Override
+    public void init() throws ServletException{
+        // store category list in servlet context
+        getServletContext().setAttribute("categories", categoryFacade.findAll() );
+    }
 }
