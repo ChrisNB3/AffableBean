@@ -1,14 +1,19 @@
-<%-- any content can be specified here e.g.: --%>
+<%--
+    Document   : footer
+    Created on : May 20, 2010, 12:20:12 AM
+    Author     : tgiunipero
+--%>
+
 
             <div id="footer">
                 <br>
-                <hr>
+                <hr id="footerDivider">
                 <p id="footerText" class="reallySmallText">
                     <a href="#">Privacy Policy</a>
                     &nbsp;&nbsp;::&nbsp;&nbsp;
                     <a href="#">Contact</a>
                     &nbsp;&nbsp;&copy;&nbsp;&nbsp;
-                    2015 The Affable Bean</p>
+                    2010 the affable bean</p>
             </div>
         </div>
     </body>
