@@ -63,6 +63,8 @@ label { line-height: 30px }
     background-color: #f5eabe;
     padding: 5px;
     color: inherit;
+    display: inline;
+    border-radius: 4px;
 }
 
 .hMargin { margin: 0 30px }
@@ -213,6 +215,7 @@ label { line-height: 30px }
     padding: 13px;
     display: block;
     background-color: #d3ede8;
+    border-radius: 4px;
 }
 
 #selectedCategory {
@@ -227,6 +230,7 @@ label { line-height: 30px }
     float: right;
     background-color: #f5eabe;
     padding: 7px;
+    border-radius: 4px;
 }
 
 .categoryText {
@@ -264,6 +268,7 @@ label { line-height: 30px }
     padding: 10px;
     background-color: #f5eabe;
     float: left;
+    border-radius: 4px;
 }
 
 #checkoutTable td {
@@ -280,6 +285,7 @@ label { line-height: 30px }
     padding: 10px;
     border: 1px solid #c3e3e0;
     background-color: #c3e3e0;
+    border-radius: 4px;
 }
 
 #priceBox td {
@@ -301,6 +307,7 @@ label { line-height: 30px }
     padding: 10px;
     background-color: #f5eabe;
     float: left;
+    border-radius: 4px;
 }
 
 .summaryColumn {

@@ -4,6 +4,10 @@
     Author     : tgiunipero
 --%>
 
+<%-- Set session-scoped variable to track the view user is coming from.
+     This is used by the language mechanism in the Controller so that
+     users view the same page when switching between English and Czech. --%>
+<c:set var='view' value='/category' scope='session' />
 
 <div id="categoryLeftColumn">
 
@@ -13,7 +17,7 @@
             <c:when test="${category.name == selectedCategory.name}">
                 <div class="categoryButton" id="selectedCategory">
                     <span class="categoryText">
-                        ${category.name}
+                        <fmt:message key='${category.name}'/>
                     </span>
                 </div>
             </c:when>
@@ -21,7 +25,7 @@
                 <%--<a href="category?${category.id}" class="categoryButton">--%>
                 <a href="<c:url value='category?${category.id}'/>" class="categoryButton">
                     <span class="categoryText">
-                        ${category.name}
+                        <fmt:message key='${category.name}'/>
                     </span>
                 </a>
             </c:otherwise>
@@ -33,7 +37,7 @@
 
 <div id="categoryRightColumn">
 
-    <p id="categoryTitle">${selectedCategory.name}</p>
+    <p id="categoryTitle"><fmt:message key='${selectedCategory.name}'/></p>
 
     <table id="productTable">
 
@@ -42,16 +46,16 @@
             <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
                 <td>
                     <img src="${initParam.productImagePath}${product.name}.png"
-                         alt="${product.name}">
+                         alt="<fmt:message key='${product.name}'/>">
                 </td>
 
                 <td>
-                    ${product.name}
+                    <fmt:message key='${product.name}'/>
                     <br>
-                    <span class="smallText">${product.description}</span>
+                    <span class="smallText"><fmt:message key='${product.name}Description'/></span>
                 </td>
 
-                <td>&euro; ${product.price}</td>
+                <td><fmt:formatNumber type="currency" currencySymbol="&euro; " value="${product.price}"/></td>
 
                 <td>
                     <!--<form action="addToCart" method="post">-->
