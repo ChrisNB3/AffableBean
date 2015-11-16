@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,7 +55,7 @@ public class CustomerOrder implements Serializable {
     @Column(name = "amount")
     private BigDecimal amount;
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Column(name = "date_created")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
@@ -68,6 +69,11 @@ public class CustomerOrder implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
     private Collection<OrderedProduct> orderedProductCollection;
 
+    @PrePersist
+    protected void onCreate() {
+        this.dateCreated = new Date();
+    }
+    
     public CustomerOrder() {
     }
 

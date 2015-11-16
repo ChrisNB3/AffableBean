@@ -26,8 +26,8 @@
                     <div class="categoryBox">
                         <%--<a href="category?${category.id}">--%>
                         <a href="<c:url value='category?${category.id}'/>">
+                            <span class="categoryLabel"></span>
                             <span class="categoryLabelText">${category.name}</span>
-                            
                             <img src="${initParam.categoryImagePath}${category.name}.jpg"
                                  alt="${category.name}">
                         </a>
